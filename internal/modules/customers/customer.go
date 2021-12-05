@@ -2,15 +2,18 @@ package customers
 
 import (
 	"errors"
+	"time"
 
 	uuid "github.com/satori/go.uuid"
 )
 
 type Customer struct {
-	ID    string
-	Name  string
-	Cpf   string
-	Birth string
+	ID        string
+	Name      string
+	Cpf       string
+	Birth     string
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 type CustomerInterface interface {
@@ -18,17 +21,22 @@ type CustomerInterface interface {
 	GetID() string
 	GetName() string
 	GetCpf() string
-	GetBirth() string
 }
 
 func NewCustomer() *Customer {
 	customer := Customer{
-		ID: uuid.NewV4().String(),
+		ID:        uuid.NewV4().String(),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 	return &customer
 }
 
 func (c *Customer) IsValid() (bool, error) {
+	_, err := uuid.FromString(c.ID)
+	if err != nil {
+		return false, errors.New("customer ID is invalid")
+	}
 	if c.Name == "" {
 		return false, errors.New("customer name is required")
 	}
@@ -51,8 +59,4 @@ func (c *Customer) GetName() string {
 
 func (c *Customer) GetCpf() string {
 	return c.Cpf
-}
-
-func (c *Customer) GetBirth() string {
-	return c.Birth
 }
