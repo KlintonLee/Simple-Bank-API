@@ -8,4 +8,10 @@ clean:
 test:
 	docker exec -it simple-bank-api go test ./...
 
-PHONY : mocks clean test
+http:
+	docker exec -it simple-bank-api go run main.go http
+
+initialize_cobra:
+	docker exec -it simple-bank-api cobra init --pkg-name github.com/klintonlee/simple-bank-api
+
+PHONY : mocks clean test http initialize_cobra
