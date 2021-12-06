@@ -21,6 +21,7 @@ type CustomerInterface interface {
 	GetID() string
 	GetName() string
 	GetCpf() string
+	GetBirth() string
 }
 
 func NewCustomer() *Customer {
@@ -59,4 +60,8 @@ func (c *Customer) GetName() string {
 
 func (c *Customer) GetCpf() string {
 	return c.Cpf
+}
+
+func (c *Customer) GetBirth() string {
+	return c.Birth
 }

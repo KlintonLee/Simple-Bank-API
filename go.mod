@@ -3,6 +3,7 @@ module github.com/klintonlee/simple-bank-api
 go 1.17
 
 require (
+	github.com/golang/mock v1.6.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.7.0
 )

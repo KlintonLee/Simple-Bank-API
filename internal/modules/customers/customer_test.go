@@ -55,3 +55,11 @@ func TestCustomer_GetCpf(t *testing.T) {
 	cpf := customer.GetCpf()
 	assert.Equal(t, customer.Cpf, cpf)
 }
+
+func TestCustomer_GetBirth(t *testing.T) {
+	customer := customers.Customer{}
+	customer.Birth = "2021-10-27"
+
+	birth := customer.GetBirth()
+	assert.Equal(t, customer.Birth, birth)
+}
