@@ -38,11 +38,11 @@ func TestCustomerService_Create(t *testing.T) {
 	service := customers.NewCustomerService(store)
 
 	store.EXPECT().Save(gomock.Any()).Return(customer, nil)
-	result, err := service.Create("a", "b", "c")
+	result, err := service.Create("a", "b", "c", "d")
 	assert.Nil(t, err)
 	assert.Equal(t, customer, result)
 
 	store.EXPECT().Save(gomock.Any()).Return(nil, errors.New("Store error"))
-	_, err = service.Create("a", "b", "c")
+	_, err = service.Create("a", "b", "c", "d")
 	assert.Equal(t, "Store error", err.Error())
 }

@@ -28,7 +28,7 @@ var webServerCmd = &cobra.Command{
 	Short: "Initialize Server",
 	Long:  `Providing a http server`,
 	Run: func(cmd *cobra.Command, args []string) {
-		err := http.Run()
+		err := http.Run(customerStore)
 		if err != nil {
 			log.Fatal(err)
 		}

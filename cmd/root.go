@@ -16,15 +16,19 @@ limitations under the License.
 package cmd
 
 import (
+	"database/sql"
 	"fmt"
 	"os"
 
+	customerDb "github.com/klintonlee/simple-bank-api/internal/adapters/db"
 	"github.com/spf13/cobra"
-
 	"github.com/spf13/viper"
 )
 
 var cfgFile string
+
+var db, _ = sql.Open("sqlite3", "db.sqlite")
+var customerStore = customerDb.NewCustomerDb(db)
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

@@ -26,8 +26,11 @@ func (c *CustomerService) FindCustomer(id string) (CustomerInterface, error) {
 	return result, nil
 }
 
-func (c *CustomerService) Create(name, cpf, birth string) (CustomerInterface, error) {
+func (c *CustomerService) Create(id, name, cpf, birth string) (CustomerInterface, error) {
 	customer := NewCustomer()
+	if id != "" {
+		customer.ID = id
+	}
 	customer.Name = name
 	customer.Cpf = cpf
 	customer.Birth = birth

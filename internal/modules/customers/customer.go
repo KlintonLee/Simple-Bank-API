@@ -8,12 +8,12 @@ import (
 )
 
 type Customer struct {
-	ID        string
-	Name      string
-	Cpf       string
-	Birth     string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	ID        string    `json:"id"`
+	Name      string    `json:"name"`
+	Cpf       string    `json:"cpf"`
+	Birth     string    `json:"birth"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 type CustomerInterface interface {

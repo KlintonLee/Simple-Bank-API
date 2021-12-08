@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/golang/mock v1.6.0
 	github.com/gorilla/mux v1.8.0
+	github.com/mattn/go-sqlite3 v1.14.9
 	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/viper v1.9.0
