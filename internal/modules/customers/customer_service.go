@@ -1,7 +1,7 @@
 package customers
 
 type CustomerStoreInterface interface {
-	FindByID(id string) (CustomerInterface, error)
+	FindByCpf(cpf string) (CustomerInterface, error)
 	Save(customer CustomerInterface) (CustomerInterface, error)
 }
 
@@ -10,7 +10,7 @@ type CustomerService struct {
 }
 
 type CustomerServiceInterface interface {
-	FindCustomer(id string) (CustomerInterface, error)
+	FindCustomerByCpf(id string) (CustomerInterface, error)
 	Create(name, cpf, birth string) (CustomerInterface, error)
 }
 
@@ -18,8 +18,8 @@ func NewCustomerService(store CustomerStoreInterface) *CustomerService {
 	return &CustomerService{Store: store}
 }
 
-func (c *CustomerService) FindCustomer(id string) (CustomerInterface, error) {
-	result, err := c.Store.FindByID(id)
+func (c *CustomerService) FindCustomerByCpf(cpf string) (CustomerInterface, error) {
+	result, err := c.Store.FindByCpf(cpf)
 	if err != nil {
 		return nil, err
 	}

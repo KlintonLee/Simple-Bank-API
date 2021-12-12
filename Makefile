@@ -1,6 +1,6 @@
 createdb:
 	touch db.sqlite
-	docker exec simple-bank-api sqlite3 db.sqlite "CREATE TABLE customers (id string, name string, cpf string, birth string, created_at string, updated_at string)";
+	docker exec simple-bank-api sqlite3 db.sqlite "CREATE TABLE customers (id string, name string, cpf string, birth string, created_at timestamp, updated_at timestamp)";
 
 dropdb:
 	rm db.sqlite

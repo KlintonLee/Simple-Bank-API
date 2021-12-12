@@ -28,6 +28,7 @@ func (h *Handler) SetupRoutes() {
 
 	customerHandler := CustomerHandler{store: h.customerStore}
 	h.Router.HandleFunc("/api/v1/customers", customerHandler.CreateCustomer).Methods("POST")
+	h.Router.HandleFunc("/api/v1/customers/{cpf}", customerHandler.ShowCustomer).Methods("GET")
 
 	h.Router.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")

@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"time"
 
 	"github.com/klintonlee/simple-bank-api/internal/modules/customers"
 	_ "github.com/mattn/go-sqlite3"
@@ -15,18 +16,18 @@ func NewCustomerDb(db *sql.DB) *CustomerDb {
 	return &CustomerDb{db: db}
 }
 
-func (c *CustomerDb) FindByID(id string) (customers.CustomerInterface, error) {
+func (c *CustomerDb) FindByCpf(cpf string) (customers.CustomerInterface, error) {
 	var customer customers.Customer
 	stmt, err := c.db.Prepare(`
 		SELECT id, name, cpf, birth
 		FROM customers
-		WHERE id = ?;
+		WHERE cpf = ?;
 	`)
 	if err != nil {
 		return nil, err
 	}
 	defer stmt.Close()
-	err = stmt.QueryRow(id).Scan(&customer.ID, &customer.Name, &customer.Cpf, &customer.Birth)
+	err = stmt.QueryRow(cpf).Scan(&customer.ID, &customer.Name, &customer.Cpf, &customer.Birth)
 	if err != nil {
 		return nil, err
 	}
@@ -52,14 +53,21 @@ func (c *CustomerDb) Save(customer customers.CustomerInterface) (customers.Custo
 
 func (c *CustomerDb) create(customer customers.CustomerInterface) (customers.CustomerInterface, error) {
 	stmt, err := c.db.Prepare(`
-		INSERT INTO customers(id, name, cpf, birth)
-		VALUES (?, ?, ?, ?);
+		INSERT INTO customers(id, name, cpf, birth, created_at, updated_at)
+		VALUES (?, ?, ?, ?, ?, ?);
 	`)
 	if err != nil {
 		return nil, err
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(customer.GetID(), customer.GetName(), customer.GetCpf(), customer.GetBirth())
+	_, err = stmt.Exec(
+		customer.GetID(),
+		customer.GetName(),
+		customer.GetCpf(),
+		customer.GetBirth(),
+		time.Now(),
+		time.Now(),
+	)
 	if err != nil {
 		return nil, err
 	}

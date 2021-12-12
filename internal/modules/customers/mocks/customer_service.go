@@ -34,19 +34,19 @@ func (m *MockCustomerStoreInterface) EXPECT() *MockCustomerStoreInterfaceMockRec
 	return m.recorder
 }
 
-// FindByID mocks base method.
-func (m *MockCustomerStoreInterface) FindByID(id string) (customers.CustomerInterface, error) {
+// FindByCpf mocks base method.
+func (m *MockCustomerStoreInterface) FindByCpf(cpf string) (customers.CustomerInterface, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "FindByID", id)
+	ret := m.ctrl.Call(m, "FindByCpf", cpf)
 	ret0, _ := ret[0].(customers.CustomerInterface)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// FindByID indicates an expected call of FindByID.
-func (mr *MockCustomerStoreInterfaceMockRecorder) FindByID(id interface{}) *gomock.Call {
+// FindByCpf indicates an expected call of FindByCpf.
+func (mr *MockCustomerStoreInterfaceMockRecorder) FindByCpf(cpf interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByID", reflect.TypeOf((*MockCustomerStoreInterface)(nil).FindByID), id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByCpf", reflect.TypeOf((*MockCustomerStoreInterface)(nil).FindByCpf), cpf)
 }
 
 // Save mocks base method.
@@ -102,17 +102,17 @@ func (mr *MockCustomerServiceInterfaceMockRecorder) Create(name, cpf, birth inte
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockCustomerServiceInterface)(nil).Create), name, cpf, birth)
 }
 
-// FindCustomer mocks base method.
-func (m *MockCustomerServiceInterface) FindCustomer(id string) (customers.CustomerInterface, error) {
+// FindCustomerByCpf mocks base method.
+func (m *MockCustomerServiceInterface) FindCustomerByCpf(id string) (customers.CustomerInterface, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "FindCustomer", id)
+	ret := m.ctrl.Call(m, "FindCustomerByCpf", id)
 	ret0, _ := ret[0].(customers.CustomerInterface)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// FindCustomer indicates an expected call of FindCustomer.
-func (mr *MockCustomerServiceInterfaceMockRecorder) FindCustomer(id interface{}) *gomock.Call {
+// FindCustomerByCpf indicates an expected call of FindCustomerByCpf.
+func (mr *MockCustomerServiceInterfaceMockRecorder) FindCustomerByCpf(id interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindCustomer", reflect.TypeOf((*MockCustomerServiceInterface)(nil).FindCustomer), id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindCustomerByCpf", reflect.TypeOf((*MockCustomerServiceInterface)(nil).FindCustomerByCpf), id)
 }

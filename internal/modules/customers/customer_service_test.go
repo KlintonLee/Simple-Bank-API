@@ -18,13 +18,13 @@ func TestCustomerService_FindCustomer(t *testing.T) {
 	store := mock_customer.NewMockCustomerStoreInterface(ctrl)
 	service := customers.NewCustomerService(store)
 
-	store.EXPECT().FindByID("abc").Return(customer, nil)
-	result, err := service.FindCustomer("abc")
+	store.EXPECT().FindByCpf("abc").Return(customer, nil)
+	result, err := service.FindCustomerByCpf("abc")
 	assert.Nil(t, err)
 	assert.Equal(t, customer, result)
 
-	store.EXPECT().FindByID("abc").Return(nil, errors.New("Some error"))
-	result, err = service.FindCustomer("abc")
+	store.EXPECT().FindByCpf("abc").Return(nil, errors.New("Some error"))
+	result, err = service.FindCustomerByCpf("abc")
 	assert.Nil(t, result)
 	assert.Equal(t, "Some error", err.Error())
 }

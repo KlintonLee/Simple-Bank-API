@@ -26,9 +26,7 @@ type CustomerInterface interface {
 
 func NewCustomer() *Customer {
 	customer := Customer{
-		ID:        uuid.NewV4().String(),
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
+		ID: uuid.NewV4().String(),
 	}
 	return &customer
 }
